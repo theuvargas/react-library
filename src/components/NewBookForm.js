@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   FormControl,
   FormLabel,
@@ -33,9 +34,8 @@ const genreArray = [
 function NewBookForm(props) {
   const {
     register,
-    reset,
     handleSubmit,
-    formState: { isSubmitSuccessful, isSubmitting, errors },
+    formState: { isSubmitting, errors },
   } = useForm();
 
   function onSubmit(data) {
@@ -80,7 +80,7 @@ function NewBookForm(props) {
           name="title"
           {...register('title', { required: 'This is required' })}
         />
-        <Text color="red.500">{errors?.name?.message}</Text>
+        <Text color="red.500">{errors.name && errors.name.message}</Text>
       </FormControl>
       <FormControl isRequired>
         <FormLabel htmlFor="author">Author</FormLabel>
@@ -88,7 +88,7 @@ function NewBookForm(props) {
           id="author"
           {...register('author', { required: 'This is required' })}
         />
-        <Text color="red.500">{errors?.author?.message}</Text>
+        <Text color="red.500">{errors.author && errors.author.message}</Text>
       </FormControl>
       <FormControl isRequired>
         <FormLabel htmlFor="pages">Number of pages</FormLabel>
@@ -101,11 +101,11 @@ function NewBookForm(props) {
             valueAsNumber: true,
             validate: {
               positive: v =>
-                parseInt(v) > 0 || 'Number of pages should be positive',
+                parseInt(v, 10) > 0 || 'Number of pages should be positive',
             },
           })}
         />
-        <Text color="red.500">{errors?.pages?.message}</Text>
+        <Text color="red.500">{errors.pages && errors.pages.message}</Text>
       </FormControl>
       <FormControl>
         <FormLabel htmlFor="description">Description</FormLabel>

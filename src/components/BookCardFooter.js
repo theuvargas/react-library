@@ -1,11 +1,13 @@
+import React from 'react';
 import { Box, Text, Progress, Tooltip } from '@chakra-ui/react';
+import { Fragment } from 'react';
 import RatingStars from './ui/RatingStars';
 
 function BookCardFooter(props) {
   return (
     <Box mx="2">
       {props.type === 'progress' ? (
-        <>
+        <Fragment>
           <Text fontSize="12" align="right">
             {props.percentageRead}% read
           </Text>
@@ -23,7 +25,7 @@ function BookCardFooter(props) {
               display="block"
             />
           </Tooltip>
-        </>
+        </Fragment>
       ) : (
         <RatingStars starsFilled={props.rating} starSize="5" />
       )}

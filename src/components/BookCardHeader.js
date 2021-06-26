@@ -1,8 +1,9 @@
+import React from 'react';
 import { Box } from '@chakra-ui/react';
 
 import BookCover from './BookCover';
 
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import BookCardMenu from './BookCardMenu';
 
 function BookCardHeader(props) {

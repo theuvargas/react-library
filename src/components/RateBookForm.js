@@ -1,11 +1,5 @@
-import {
-  FormControl,
-  Box,
-  FormErrorMessage,
-  Input,
-  Button,
-  Text,
-} from '@chakra-ui/react';
+import React from 'react';
+import { Box, Input, Button, Text } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 
 function RateBookForm(props) {
@@ -33,7 +27,7 @@ function RateBookForm(props) {
           },
         })}
       />
-      <Text color="red.500">{errors?.rating?.message}</Text>
+      <Text color="red.500">{errors.rating && errors.rating.message}</Text>
       <Box textAlign="right" mt="2">
         <Button colorScheme="green">Rate</Button>
       </Box>

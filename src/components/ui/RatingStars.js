@@ -1,5 +1,6 @@
 import { FaStarHalf } from 'react-icons/fa';
 import { Icon, Text, Flex } from '@chakra-ui/react';
+import React from 'react';
 
 function RatingStars(props) {
   const stars = [];

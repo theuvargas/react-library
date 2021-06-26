@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import React, { useState } from 'react';
 
 import {
   FaEllipsisV,
@@ -16,6 +16,7 @@ import {
   IconButton,
   MenuList,
   MenuItem,
+  Box,
 } from '@chakra-ui/react';
 import DeleteBookDialog from './DeleteBookDialog';
 import AddPagesModal from './AddPagesModal';
@@ -71,7 +72,7 @@ function BookCardMenu(props) {
         {props.book.percentageRead() === 100 ? (
           true
         ) : (
-          <>
+          <Box>
             <MenuItem onClick={toggleAddModal} icon={<Icon as={FaPlus} />}>
               Add pages read
             </MenuItem>
@@ -81,7 +82,7 @@ function BookCardMenu(props) {
               book={props.book}
               addPagesRead={props.addPagesRead}
             />
-          </>
+          </Box>
         )}
         <MenuItem onClick={toggleSetModal} icon={<Icon as={FaBookReader} />}>
           Set pages read

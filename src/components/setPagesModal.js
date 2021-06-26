@@ -1,3 +1,4 @@
+import React from 'react';
 import PagesModal from './ui/PagesModal';
 
 function SetPagesModal(props) {

@@ -1,10 +1,10 @@
+import React from 'react';
 import {
   Modal,
   ModalOverlay,
   ModalContent,
   ModalHeader,
   ModalBody,
-  ModalFooter,
 } from '@chakra-ui/react';
 import NewBookForm from './NewBookForm';
 

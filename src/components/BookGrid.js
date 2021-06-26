@@ -1,3 +1,4 @@
+import React from 'react';
 import { Grid, GridItem } from '@chakra-ui/react';
 import BookCard from './BookCard';
 
@@ -12,7 +13,7 @@ function BookGrid(props) {
   }
 
   function addPagesRead(id, pagesToAdd) {
-    pagesToAdd = parseInt(pagesToAdd);
+    pagesToAdd = parseInt(pagesToAdd, 10);
     if (pagesToAdd < 0) return;
     props.books.forEach(book => {
       if (book.id === id) {
@@ -25,7 +26,7 @@ function BookGrid(props) {
   }
 
   function setPagesRead(id, pagesRead) {
-    pagesRead = parseInt(pagesRead);
+    pagesRead = parseInt(pagesRead, 10);
     if (pagesRead < 0) return;
     props.books.forEach(book => {
       if (book.id === id) {

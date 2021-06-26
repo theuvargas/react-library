@@ -1,6 +1,6 @@
-import { Flex, Button, Box, Icon, Select, Text } from '@chakra-ui/react';
+import React from 'react';
+import { Flex, Button, Select, Text } from '@chakra-ui/react';
 import { useState } from 'react';
-import { FaPlus } from 'react-icons/fa';
 import NewBookModal from './NewBookModal';
 
 function BookGridActions(props) {

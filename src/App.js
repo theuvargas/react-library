@@ -6,7 +6,6 @@ import {
   TabPanels,
   TabPanel,
   Tab,
-  Icon,
   Box,
   Text,
 } from '@chakra-ui/react';
