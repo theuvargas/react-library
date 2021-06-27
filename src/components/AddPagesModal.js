@@ -1,13 +1,19 @@
 import React from 'react';
 import PagesModal from './ui/PagesModal';
+import { useDispatch } from 'react-redux';
+import { addPagesRead } from '../features/booksSlice';
 
 function AddPagesModal(props) {
+  const dispatch = useDispatch();
+
   function addPages(e) {
     e.preventDefault();
-
-    props.addPagesRead(
-      props.book.id,
-      e.target.children[0].children[1].children[0].value
+    //console.log(props.book.id);
+    dispatch(
+      addPagesRead({
+        id: props.book.id,
+        pagesToAdd: e.target.children[0].children[1].children[0].value,
+      })
     );
 
     props.toggleIsOpen();

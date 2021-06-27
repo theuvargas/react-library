@@ -2,7 +2,12 @@ import React from 'react';
 import { Box, Input, Button, Text } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 
+import { useDispatch } from 'react-redux';
+import { setRating } from '../features/booksSlice';
+
 function RateBookForm(props) {
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -10,7 +15,8 @@ function RateBookForm(props) {
   } = useForm();
 
   function onSubmit(data) {
-    props.setRating(props.book.id, data.rating);
+    dispatch(setRating({ id: props.book.id, rating: data.rating }));
+
     props.toggleIsOpen();
   }
 

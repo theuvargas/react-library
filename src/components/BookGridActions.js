@@ -2,11 +2,11 @@ import React from 'react';
 import { Flex, Button, Select, Text } from '@chakra-ui/react';
 import { useState } from 'react';
 import NewBookModal from './NewBookModal';
+import { useDispatch } from 'react-redux';
+import { changeSort } from '../features/booksSlice';
 
 function BookGridActions(props) {
-  function changeSort(e) {
-    props.changeSort(e.target.value);
-  }
+  const dispatch = useDispatch();
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -27,7 +27,7 @@ function BookGridActions(props) {
             size="sm"
             _focus={{}}
             borderColor={props.color + '.600'}
-            onChange={changeSort}
+            onChange={e => dispatch(changeSort(e.target.value))}
           >
             <option value="title">Title</option>
             <option value="rating">Rating</option>

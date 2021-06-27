@@ -23,10 +23,11 @@ import AddPagesModal from './AddPagesModal';
 import SetPagesModal from './setPagesModal';
 import RateModal from './RateModal';
 
+import { useDispatch } from 'react-redux';
+import { completeBook } from '../features/booksSlice';
+
 function BookCardMenu(props) {
-  function completeBook() {
-    props.completeBook(props.book.id);
-  }
+  const dispatch = useDispatch();
 
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
 
@@ -96,7 +97,12 @@ function BookCardMenu(props) {
         {props.book.percentageRead() === 100 ? (
           true
         ) : (
-          <MenuItem onClick={completeBook} icon={<Icon as={FaCheck} />}>
+          <MenuItem
+            onClick={() => {
+              dispatch(completeBook(props.book.id));
+            }}
+            icon={<Icon as={FaCheck} />}
+          >
             Mark as completed
           </MenuItem>
         )}

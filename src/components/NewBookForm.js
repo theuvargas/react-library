@@ -11,6 +11,8 @@ import {
   Box,
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { addBook } from '../features/booksSlice';
 
 const genreArray = [
   'Drama',
@@ -32,6 +34,7 @@ const genreArray = [
 ];
 
 function NewBookForm(props) {
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -47,8 +50,6 @@ function NewBookForm(props) {
     if (data.image === '')
       data.image =
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbJk-qCpmshndFRatcLSOB8GsyboaySnGpeS2GvkZsQShaZpccKqkkK4MkBRGbIVOBnzw&usqp=CAU';
-
-    console.log(data);
 
     const newBook = {
       id: data.title,
@@ -66,7 +67,8 @@ function NewBookForm(props) {
       },
     };
 
-    props.addBook(newBook);
+    //props.addBook(newBook);
+    dispatch(addBook(newBook));
 
     props.toggleIsOpen();
   }

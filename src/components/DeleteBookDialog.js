@@ -11,12 +11,16 @@ import {
   Button,
 } from '@chakra-ui/react';
 
+import { useDispatch } from 'react-redux';
+import { removeBook } from '../features/booksSlice';
+
 function DeleteBookDialog(props) {
+  const dispatch = useDispatch();
   const cancelRef = useRef();
 
-  function removeBook() {
+  function callRemoveBook() {
+    dispatch(removeBook(props.book.id));
     props.toggleDialog();
-    props.removeBook(props.book.id);
   }
 
   return (
@@ -35,7 +39,7 @@ function DeleteBookDialog(props) {
             <Button ref={cancelRef} onClick={props.toggleDialog}>
               Cancel
             </Button>
-            <Button colorScheme="red" ml="3" onClick={removeBook}>
+            <Button colorScheme="red" ml="3" onClick={callRemoveBook}>
               Delete
             </Button>
           </AlertDialogFooter>
