@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, GridItem } from '@chakra-ui/react';
-import BookCard from './book-card/BookCard';
+import BookCard from '../book-card/BookCard';
 import { useSelector } from 'react-redux';
 
 function BookGrid(props) {
