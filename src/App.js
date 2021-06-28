@@ -13,18 +13,16 @@ import theme from './theme';
 import BookGrid from './components/BookGrid';
 import BookGridActions from './components/BookGridActions';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeSort } from './features/books/booksSlice';
-
-// const mainColor = 'pink';
+import { changeSort, sortBooks } from './features/books/booksSlice';
 
 function App() {
   const books = useSelector(state => state.books.booksArray);
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  /*useEffect(() => {
     dispatch(changeSort('title'));
-  }, []);
+  }, []);*/
 
   const completedBooks = books.filter(book => {
     return book.percentageRead() === 100;
@@ -34,10 +32,10 @@ function App() {
     return book.percentageRead() !== 100;
   });
 
-  const sortMethod = useSelector(state => state.books.sortMethod);
+  const sortBy = useSelector(state => state.books.sortBy);
   useEffect(() => {
-    dispatch(changeSort(sortMethod));
-  }, [books]);
+    dispatch(sortBooks(sortBy));
+  }, [books, sortBy]);
 
   const mainColor = useSelector(state => state.color);
 

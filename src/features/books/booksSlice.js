@@ -90,7 +90,7 @@ export const booksSlice = createSlice({
         rating: 3.5,
       },
     ],
-    sortMethod: 'title',
+    sortBy: 'title',
   },
   reducers: {
     addBook: (state, action) => {
@@ -137,8 +137,10 @@ export const booksSlice = createSlice({
       );
     },
     changeSort: (state, action) => {
-      const sortBy = action.payload;
-      state.sortMethod = sortBy;
+      state.sortBy = action.payload;
+    },
+    sortBooks: state => {
+      const sortBy = state.sortBy;
       if (sortBy === 'title') {
         state.booksArray.sort((book1, book2) => {
           return book1.title.toLowerCase() < book2.title.toLowerCase() ? -1 : 1;
@@ -168,6 +170,7 @@ export const {
   setRating,
   removeBook,
   changeSort,
+  sortBooks,
 } = booksSlice.actions;
 
 export default booksSlice.reducer;
