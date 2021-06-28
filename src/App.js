@@ -13,12 +13,11 @@ import theme from './theme';
 import BookGrid from './components/BookGrid';
 import BookGridActions from './components/BookGridActions';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeSort } from './features/booksSlice';
+import { changeSort } from './features/books/booksSlice';
 
-const mainColor = 'pink';
+// const mainColor = 'pink';
 
 function App() {
-  //const [books, //setBooks] = useState(booksArray);
   const books = useSelector(state => state.books.booksArray);
 
   const dispatch = useDispatch();
@@ -40,6 +39,8 @@ function App() {
     dispatch(changeSort(sortMethod));
   }, [books]);
 
+  const mainColor = useSelector(state => state.color);
+
   return (
     <ChakraProvider theme={theme}>
       <Box w="xl" mx="auto">
@@ -52,13 +53,7 @@ function App() {
           </TabList>
           <TabPanels h="85vh" overflowY="scroll">
             <TabPanel>
-              <BookGrid
-                books={books}
-                mainColor={mainColor}
-                //setBooks={//setBooks}
-                footerType="progress"
-                allBooks={books}
-              />
+              <BookGrid books={books} footerType="progress" />
               {books.length === 0 ? (
                 <Text textAlign="center">
                   You have no books added! Start adding them by clicking "New
@@ -69,13 +64,7 @@ function App() {
               )}
             </TabPanel>
             <TabPanel>
-              <BookGrid
-                books={currentlyReadingBooks}
-                mainColor={mainColor}
-                //setBooks={//setBooks}
-                footerType="progress"
-                allBooks={books}
-              />
+              <BookGrid books={currentlyReadingBooks} footerType="progress" />
               {currentlyReadingBooks.length === 0 ? (
                 <Text textAlign="center">
                   You aren't reading any book right now. Add a new one by
@@ -86,13 +75,7 @@ function App() {
               )}
             </TabPanel>
             <TabPanel>
-              <BookGrid
-                books={completedBooks}
-                mainColor={mainColor}
-                //setBooks={//setBooks}
-                footerType="rating"
-                allBooks={books}
-              />
+              <BookGrid books={completedBooks} footerType="rating" />
               {completedBooks.length === 0 ? (
                 <Text textAlign="center">No finished books yet.</Text>
               ) : (

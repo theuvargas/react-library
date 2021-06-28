@@ -6,7 +6,7 @@ import {
   ModalHeader,
   ModalBody,
 } from '@chakra-ui/react';
-import NewBookForm from './NewBookForm';
+import NewBookForm from '../forms/NewBookForm';
 
 function NewBookModal(props) {
   return (
@@ -15,10 +15,7 @@ function NewBookModal(props) {
       <ModalContent>
         <ModalHeader>Add new book</ModalHeader>
         <ModalBody>
-          <NewBookForm
-            addBook={props.addBook}
-            toggleIsOpen={props.toggleIsOpen}
-          />
+          <NewBookForm toggleIsOpen={props.toggleIsOpen} />
         </ModalBody>
       </ModalContent>
     </Modal>

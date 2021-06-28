@@ -30,32 +30,13 @@ function BookCard(props) {
       onMouseLeave={setIconVisibilityFalse}
     >
       <BookCardHeader
-        book={props.book}
-        completeBook={props.completeBook}
-        removeBook={props.removeBook}
-        addPagesRead={props.addPagesRead}
-        setPagesRead={props.setPagesRead}
-        setRating={props.setRating}
+        bookId={props.bookId}
         iconVisibility={iconVisibility}
         setIconVisibilityTrue={setIconVisibilityTrue}
         setIconVisibilityFalse={setIconVisibilityFalse}
-        color={props.color}
       />
-      <BookCardInfo
-        color={props.color}
-        percentageRead={props.book.percentageRead()}
-        genres={props.book.genres}
-        title={props.book.title}
-        author={props.book.author}
-      />
-      <BookCardFooter
-        color={props.color}
-        percentageRead={props.book.percentageRead()}
-        pages={props.book.pages}
-        pagesRead={props.book.pagesRead}
-        rating={props.book.rating}
-        type={props.footerType}
-      />
+      <BookCardInfo bookId={props.bookId} />
+      <BookCardFooter bookId={props.bookId} type={props.footerType} />
     </Flex>
   );
 }

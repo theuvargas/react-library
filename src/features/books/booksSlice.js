@@ -34,7 +34,7 @@ export const booksSlice = createSlice({
         pages: 229,
         pagesRead: 109,
         percentageRead: computePercentageRead,
-        rating: -1,
+        rating: 0,
       },
       {
         id: '2',

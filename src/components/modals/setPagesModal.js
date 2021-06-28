@@ -1,7 +1,7 @@
 import React from 'react';
-import PagesModal from './ui/PagesModal';
+import PagesModal from '../forms/PagesForm';
 import { useDispatch } from 'react-redux';
-import { setPagesRead } from '../features/booksSlice';
+import { setPagesRead } from '../../features/books/booksSlice';
 
 function SetPagesModal(props) {
   const dispatch = useDispatch();
@@ -11,7 +11,7 @@ function SetPagesModal(props) {
 
     dispatch(
       setPagesRead({
-        id: props.book.id,
+        id: props.bookId,
         pagesRead: e.target.children[0].children[1].children[0].value,
       })
     );
@@ -25,7 +25,7 @@ function SetPagesModal(props) {
       label="New number of pages read"
       submitButton="Set"
       onSubmit={setPages}
-      book={props.book}
+      bookId={props.bookId}
       isOpen={props.isOpen}
       toggleIsOpen={props.toggleIsOpen}
     />

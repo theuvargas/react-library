@@ -54,7 +54,7 @@ function RatingStars(props) {
     <Flex mt="2">
       {stars}
       <Text fontSize="14" ml="1">
-        {props.starsFilled === -1 ? 'Unrated' : props.starsFilled + '/5'}
+        {props.starsFilled === 0 ? 'Unrated' : props.starsFilled + '/5'}
       </Text>
     </Flex>
   );

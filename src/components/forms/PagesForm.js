@@ -13,8 +13,14 @@ import {
   NumberInputField,
   Box,
 } from '@chakra-ui/react';
+import { useSelector } from 'react-redux';
 
 function PagesModal(props) {
+  const [pages, pagesRead] = useSelector(state => {
+    const book = state.books.booksArray.find(book => book.id === props.bookId);
+    return [book.pages, book.pagesRead];
+  });
+
   return (
     <Modal isOpen={props.isOpen} onClose={props.toggleIsOpen}>
       <ModalOverlay />
@@ -22,13 +28,12 @@ function PagesModal(props) {
         <ModalHeader>{props.header}</ModalHeader>
         <ModalBody>
           <form onSubmit={props.onSubmit}>
-            <FormControl min="0" max={props.book.pages - props.book.pagesRead}>
+            <FormControl min="0" max={pages - pagesRead}>
               <FormLabel>{props.label}</FormLabel>
               <NumberInput>
                 <NumberInputField />
                 <FormHelperText>
-                  Currently, you have read {props.book.pagesRead} out of{' '}
-                  {props.book.pages} pages.
+                  Currently, you have read {pagesRead} out of {pages} pages.
                 </FormHelperText>
               </NumberInput>
               <Box textAlign="right">

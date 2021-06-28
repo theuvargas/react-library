@@ -6,7 +6,7 @@ import {
   ModalHeader,
   ModalBody,
 } from '@chakra-ui/react';
-import RateBookForm from './RateBookForm';
+import RateBookForm from '../forms/RateBookForm';
 
 function RateModal(props) {
   return (
@@ -17,7 +17,7 @@ function RateModal(props) {
         <ModalBody>
           <RateBookForm
             setRating={props.setRating}
-            book={props.book}
+            bookId={props.bookId}
             toggleIsOpen={props.toggleIsOpen}
           />
         </ModalBody>

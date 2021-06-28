@@ -18,13 +18,13 @@ import {
   MenuItem,
   Box,
 } from '@chakra-ui/react';
-import DeleteBookDialog from './DeleteBookDialog';
-import AddPagesModal from './AddPagesModal';
-import SetPagesModal from './setPagesModal';
-import RateModal from './RateModal';
+import DeleteBookDialog from '../modals/DeleteBookDialog';
+import AddPagesModal from '../modals/AddPagesModal';
+import SetPagesModal from '../modals/setPagesModal';
+import RateModal from '../modals/RateModal';
 
-import { useDispatch } from 'react-redux';
-import { completeBook } from '../features/booksSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { completeBook } from '../../features/books/booksSlice';
 
 function BookCardMenu(props) {
   const dispatch = useDispatch();
@@ -53,6 +53,11 @@ function BookCardMenu(props) {
     setRateModalIsOpen(!rateModalIsOpen);
   }
 
+  const percentageRead = useSelector(state => {
+    const book = state.books.booksArray.find(book => book.id === props.bookId);
+    return book.percentageRead();
+  });
+
   return (
     <Menu>
       <MenuButton
@@ -70,7 +75,7 @@ function BookCardMenu(props) {
         }
       />
       <MenuList>
-        {props.book.percentageRead() === 100 ? (
+        {percentageRead === 100 ? (
           true
         ) : (
           <Box>
@@ -80,7 +85,7 @@ function BookCardMenu(props) {
             <AddPagesModal
               toggleIsOpen={toggleAddModal}
               isOpen={addModalIsOpen}
-              book={props.book}
+              bookId={props.bookId}
               addPagesRead={props.addPagesRead}
             />
           </Box>
@@ -91,22 +96,22 @@ function BookCardMenu(props) {
         <SetPagesModal
           toggleIsOpen={toggleSetModal}
           isOpen={defineModalIsOpen}
-          book={props.book}
+          bookId={props.bookId}
           setPagesRead={props.setPagesRead}
         />
-        {props.book.percentageRead() === 100 ? (
+        {percentageRead === 100 ? (
           true
         ) : (
           <MenuItem
             onClick={() => {
-              dispatch(completeBook(props.book.id));
+              dispatch(completeBook(props.bookId));
             }}
             icon={<Icon as={FaCheck} />}
           >
             Mark as completed
           </MenuItem>
         )}
-        {props.book.percentageRead() === 100 ? (
+        {percentageRead === 100 ? (
           <MenuItem onClick={toggleRateModal} icon={<Icon as={FaStar} />}>
             Rate
           </MenuItem>
@@ -115,7 +120,7 @@ function BookCardMenu(props) {
         )}
         <RateModal
           setRating={props.setRating}
-          book={props.book}
+          bookId={props.bookId}
           isOpen={rateModalIsOpen}
           toggleIsOpen={toggleRateModal}
         />
@@ -124,8 +129,7 @@ function BookCardMenu(props) {
           <DeleteBookDialog
             toggleDialog={toggleDialog}
             dialogIsOpen={dialogIsOpen}
-            book={props.book}
-            removeBook={props.removeBook}
+            bookId={props.bookId}
           />
         </MenuItem>
       </MenuList>

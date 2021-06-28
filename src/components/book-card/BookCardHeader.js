@@ -1,10 +1,12 @@
 import React from 'react';
 import { Box } from '@chakra-ui/react';
 
-import BookCover from './BookCover';
+import BookCover from '../BookCover';
 
 import { useState } from 'react';
 import BookCardMenu from './BookCardMenu';
+
+import { useSelector } from 'react-redux';
 
 function BookCardHeader(props) {
   const [coverScale, setCoverScale] = useState(1);
@@ -17,11 +19,18 @@ function BookCardHeader(props) {
     setCoverScale(1);
   }
 
+  const coverImageSrc = useSelector(state => {
+    const book = state.books.booksArray.find(book => book.id === props.bookId);
+    return book.imageSrc;
+  });
+
+  const mainColor = useSelector(state => state.color);
+
   return (
     <Box
       borderBottomWidth="1px"
       py="1"
-      bg={props.color + '.50'}
+      bg={mainColor + '.50'}
       onMouseEnter={increaseCoverScale}
       onMouseLeave={decreaseCoverScale}
     >
@@ -30,15 +39,10 @@ function BookCardHeader(props) {
           setIconVisibilityTrue={props.setIconVisibilityTrue}
           setIconVisibilityFalse={props.setIconVisibilityFalse}
           iconVisibility={props.iconVisibility}
-          removeBook={props.removeBook}
-          completeBook={props.completeBook}
-          addPagesRead={props.addPagesRead}
-          setPagesRead={props.setPagesRead}
-          setRating={props.setRating}
-          book={props.book}
+          bookId={props.bookId}
         />
       </Box>
-      <BookCover coverScale={coverScale} imageSrc={props.book.imageSrc} />
+      <BookCover coverScale={coverScale} imageSrc={coverImageSrc} />
     </Box>
   );
 }

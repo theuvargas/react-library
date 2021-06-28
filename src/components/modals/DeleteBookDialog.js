@@ -12,14 +12,14 @@ import {
 } from '@chakra-ui/react';
 
 import { useDispatch } from 'react-redux';
-import { removeBook } from '../features/booksSlice';
+import { removeBook } from '../../features/books/booksSlice';
 
 function DeleteBookDialog(props) {
   const dispatch = useDispatch();
   const cancelRef = useRef();
 
   function callRemoveBook() {
-    dispatch(removeBook(props.book.id));
+    dispatch(removeBook(props.bookId));
     props.toggleDialog();
   }
 

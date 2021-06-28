@@ -1,9 +1,9 @@
 import React from 'react';
 import { Flex, Button, Select, Text } from '@chakra-ui/react';
 import { useState } from 'react';
-import NewBookModal from './NewBookModal';
+import NewBookModal from './modals/NewBookModal';
 import { useDispatch } from 'react-redux';
-import { changeSort } from '../features/booksSlice';
+import { changeSort } from '../features/books/booksSlice';
 
 function BookGridActions(props) {
   const dispatch = useDispatch();
@@ -43,11 +43,7 @@ function BookGridActions(props) {
         >
           New book
         </Button>
-        <NewBookModal
-          addBook={props.addBook}
-          toggleIsOpen={toggleModal}
-          isOpen={modalIsOpen}
-        />
+        <NewBookModal toggleIsOpen={toggleModal} isOpen={modalIsOpen} />
       </Flex>
     </Flex>
   );

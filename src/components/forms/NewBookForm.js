@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { addBook } from '../features/booksSlice';
+import { addBook } from '../../features/books/booksSlice';
 
 const genreArray = [
   'Drama',
