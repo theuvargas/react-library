@@ -14,12 +14,10 @@ import {
   Box,
 } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
+import { useGetBook } from '../../util/hooks';
 
 function PagesModal(props) {
-  const [pages, pagesRead] = useSelector(state => {
-    const book = state.books.booksArray.find(book => book.id === props.bookId);
-    return [book.pages, book.pagesRead];
-  });
+  const { pages, pagesRead } = useGetBook(props.bookId);
 
   return (
     <Modal isOpen={props.isOpen} onClose={props.toggleIsOpen}>

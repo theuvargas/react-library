@@ -1,17 +1,15 @@
 import React from 'react';
-import { Box, HStack, Icon, Text, Tag, TagLabel } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import { Box, HStack, Icon, Text, Tag, TagLabel, Link } from '@chakra-ui/react';
+import { Link as RouterLink } from 'react-router-dom';
 
 import { FaBookOpen, FaBook } from 'react-icons/fa';
 
 import { useSelector } from 'react-redux';
+import { useGetBook, useGetPercentageRead } from '../../util/hooks';
 
 function BookCardInfo(props) {
-  const [title, author, genres, percentageRead] = useSelector(state => {
-    const book = state.books.booksArray.find(book => book.id === props.bookId);
-
-    return [book.title, book.author, book.genres, book.percentageRead()];
-  });
+  const { title, author, genres, pages, pagesRead } = useGetBook(props.bookId);
+  const percentageRead = useGetPercentageRead(pages, pagesRead);
 
   const mainColor = useSelector(state => state.color);
 
@@ -23,7 +21,9 @@ function BookCardInfo(props) {
           color={mainColor + '.700'}
         />
         <Text isTruncated>
-          <Link to={'/books/' + props.bookId}>{title}</Link>
+          <Link as={RouterLink} to={'/books/' + props.bookId}>
+            {title}
+          </Link>
         </Text>
       </HStack>
       <Text as="i" fontSize="11">

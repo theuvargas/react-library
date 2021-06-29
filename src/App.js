@@ -16,6 +16,7 @@ function App() {
           <Route path="/" exact>
             <BooksDisplay />
           </Route>
+          <Route path="*">404 mate kkk</Route>
         </Switch>
       </Router>
     </ChakraProvider>

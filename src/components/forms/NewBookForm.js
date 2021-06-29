@@ -60,7 +60,7 @@ function NewBookForm(props) {
       genres: data.genreArray,
       pages: data.pages,
       pagesRead: 0,
-      rating: -1,
+      rating: 0,
       percentageRead: function computePercentageRead() {
         const percentage = (this.pagesRead / this.pages) * 100;
         return Math.trunc(percentage);

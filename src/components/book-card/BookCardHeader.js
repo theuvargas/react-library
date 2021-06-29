@@ -7,6 +7,7 @@ import { useState } from 'react';
 import BookCardMenu from './BookCardMenu';
 
 import { useSelector } from 'react-redux';
+import { useGetBook } from '../../util/hooks';
 
 function BookCardHeader(props) {
   const [coverScale, setCoverScale] = useState(1);
@@ -19,10 +20,7 @@ function BookCardHeader(props) {
     setCoverScale(1);
   }
 
-  const coverImageSrc = useSelector(state => {
-    const book = state.books.booksArray.find(book => book.id === props.bookId);
-    return book.imageSrc;
-  });
+  const { imageSrc } = useGetBook(props.bookId);
 
   const mainColor = useSelector(state => state.color);
 
@@ -42,7 +40,7 @@ function BookCardHeader(props) {
           bookId={props.bookId}
         />
       </Box>
-      <BookCover coverScale={coverScale} imageSrc={coverImageSrc} />
+      <BookCover coverScale={coverScale} imageSrc={imageSrc} />
     </Box>
   );
 }

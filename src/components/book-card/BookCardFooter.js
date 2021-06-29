@@ -2,13 +2,11 @@ import React, { Fragment } from 'react';
 import { Box, Text, Progress, Tooltip } from '@chakra-ui/react';
 import RatingStars from '../ui/RatingStars';
 import { useSelector } from 'react-redux';
+import { useGetBook, useGetPercentageRead } from '../../util/hooks';
 
 function BookCardFooter(props) {
-  const [pages, pagesRead, percentageRead, rating] = useSelector(state => {
-    const book = state.books.booksArray.find(book => book.id === props.bookId);
-
-    return [book.pages, book.pagesRead, book.percentageRead(), book.rating];
-  });
+  const { pages, pagesRead, rating } = useGetBook(props.bookId);
+  const percentageRead = useGetPercentageRead(pages, pagesRead);
 
   const mainColor = useSelector(state => state.color);
 
