@@ -31,6 +31,7 @@ const genreArray = [
   'Self Help',
   'History',
   'Psychology',
+  'Dystopia',
 ];
 
 function NewBookForm(props) {

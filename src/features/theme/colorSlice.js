@@ -1,15 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export const booksSlice = createSlice({
+export const colorSlice = createSlice({
   name: 'color',
   initialState: 'pink',
   reducers: {
     changeColor: (state, action) => {
-      state = action.payload;
+      // state = action.payload; -> can't do this since the state is a primitive
+      return action.payload;
     },
   },
 });
 
-export const { changeColor } = booksSlice.actions;
+export const { changeColor } = colorSlice.actions;
 
-export default booksSlice.reducer;
+export default colorSlice.reducer;

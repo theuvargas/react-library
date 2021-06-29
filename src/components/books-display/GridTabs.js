@@ -38,7 +38,7 @@ function GridTabs() {
         <Tab _focus={{}}>Currently reading</Tab>
         <Tab _focus={{}}>Finished</Tab>
       </TabList>
-      <TabPanels h="85vh" overflowY="scroll">
+      <TabPanels h="80vh" overflowY="scroll">
         <TabPanel>
           <BookGrid books={books} footerType="progress" />
           {books.length === 0 ? (
