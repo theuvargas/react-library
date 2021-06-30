@@ -40,7 +40,11 @@ function BookCardHeader(props) {
           bookId={props.bookId}
         />
       </Box>
-      <BookCover coverScale={coverScale} imageSrc={imageSrc} />
+      <BookCover
+        coverScale={coverScale}
+        bookId={props.bookId}
+        imageSrc={imageSrc}
+      />
     </Box>
   );
 }

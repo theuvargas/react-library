@@ -12,6 +12,7 @@ import {
   Button,
   SimpleGrid,
   Box,
+  GridItem,
 } from '@chakra-ui/react';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -46,28 +47,31 @@ function ColorPopover() {
           <SimpleGrid columns={5} textAlign="center">
             {colors.map(color => {
               return (
-                <Box
-                  key={color}
-                  as="button"
-                  w="max-content"
-                  p="1"
-                  _focus={{
-                    outlineColor: 'blue.200',
-                  }}
-                  value={color}
-                  onClick={() => {
-                    dispatch(changeColor(color));
-                  }}
-                >
+                <GridItem>
                   <Box
-                    h="7"
-                    w="7"
-                    bg={color + '.300'}
-                    borderRadius="full"
-                    borderWidth="thin"
-                    borderColor={color + '.600'}
-                  ></Box>
-                </Box>
+                    key={color}
+                    as="button"
+                    w="max-content"
+                    p="1"
+                    _focus={{
+                      outlineColor: 'blue.200',
+                    }}
+                    value={color}
+                    onClick={() => {
+                      dispatch(changeColor(color));
+                    }}
+                  >
+                    <Box
+                      h="7"
+                      w="7"
+                      bg={color + '.300'}
+                      borderRadius="full"
+                      borderWidth="thin"
+                      borderColor={color + '.600'}
+                      _active={{ bg: color + '.600' }}
+                    ></Box>
+                  </Box>
+                </GridItem>
               );
             })}
           </SimpleGrid>
