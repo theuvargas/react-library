@@ -10,28 +10,12 @@ import { useSelector } from 'react-redux';
 import { useGetBook } from '../../util/hooks';
 
 function BookCardHeader(props) {
-  const [coverScale, setCoverScale] = useState(1);
-
-  function increaseCoverScale() {
-    setCoverScale(1.04);
-  }
-
-  function decreaseCoverScale() {
-    setCoverScale(1);
-  }
-
   const { imageSrc } = useGetBook(props.bookId);
 
   const mainColor = useSelector(state => state.color);
 
   return (
-    <Box
-      borderBottomWidth="1px"
-      py="1"
-      bg={mainColor + '.50'}
-      onMouseEnter={increaseCoverScale}
-      onMouseLeave={decreaseCoverScale}
-    >
+    <Box borderBottomWidth="1px" py="1" bg={mainColor + '.50'}>
       <Box textAlign="right">
         <BookCardMenu
           setIconVisibilityTrue={props.setIconVisibilityTrue}
@@ -40,11 +24,7 @@ function BookCardHeader(props) {
           bookId={props.bookId}
         />
       </Box>
-      <BookCover
-        coverScale={coverScale}
-        bookId={props.bookId}
-        imageSrc={imageSrc}
-      />
+      <BookCover bookId={props.bookId} imageSrc={imageSrc} />
     </Box>
   );
 }
