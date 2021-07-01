@@ -24,6 +24,9 @@ function BookCardMenu(props) {
         variant="none"
         onFocus={props.setIconVisibilityTrue}
         onBlur={props.setIconVisibilityFalse}
+        _focus={{ outlineColor: 'blue.200' }}
+        outlineOffset="-4px"
+        w="2"
         icon={
           <Icon
             _hover={{ cursor: 'pointer' }}

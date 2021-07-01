@@ -13,8 +13,9 @@ function BookCover(props) {
         objectFit="fill"
         mx="auto"
         mt="-7"
-        _hover={{ transform: 'scale(1.04)' }}
         transitionDuration="0.3s"
+        _hover={{ transform: 'scale(1.04)' }}
+        _focus={{ transform: 'scale(1.04)' }}
       />
     </Link>
   );

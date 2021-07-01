@@ -35,9 +35,15 @@ function GridTabs() {
   return (
     <Tabs isLazy colorScheme={mainColor}>
       <TabList mb="2">
-        <Tab _focus={{}}>All books</Tab>
-        <Tab _focus={{}}>Currently reading</Tab>
-        <Tab _focus={{}}>Finished</Tab>
+        <Tab outlineOffset="-3" _focus={{ outlineColor: 'blue.200' }}>
+          All books
+        </Tab>
+        <Tab outlineOffset="-3" _focus={{ outlineColor: 'blue.200' }}>
+          Currently reading
+        </Tab>
+        <Tab outlineOffset="-3" _focus={{ outlineColor: 'blue.200' }}>
+          Finished
+        </Tab>
       </TabList>
       <TabPanels h="80vh" overflowY="scroll">
         <TabPanel>

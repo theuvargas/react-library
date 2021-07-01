@@ -27,7 +27,7 @@ function BookGridActions() {
             variant="flushed"
             ml="2"
             size="sm"
-            _focus={{}}
+            _focus={{ outlineColor: 'blue.200' }}
             borderColor={mainColor + '.600'}
             onChange={e => dispatch(changeSort(e.target.value))}
           >

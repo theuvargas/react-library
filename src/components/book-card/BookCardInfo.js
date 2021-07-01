@@ -20,11 +20,7 @@ function BookCardInfo(props) {
           as={percentageRead === 100 ? FaBook : FaBookOpen}
           color={mainColor + '.700'}
         />
-        <Text isTruncated>
-          <Link as={RouterLink} to={'/books/' + props.bookId}>
-            {title}
-          </Link>
-        </Text>
+        <Text isTruncated>{title}</Text>
       </HStack>
       <Text as="i" fontSize="11">
         by {author}
