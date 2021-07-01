@@ -10,6 +10,7 @@ import {
 import BookGrid from '../../components/books-display/BookGrid';
 import { useSelector, useDispatch } from 'react-redux';
 import { sortBooks } from '../../features/books/booksSlice';
+import { useGetPercentageRead } from '../../util/hooks';
 
 function GridTabs() {
   const books = useSelector(state => state.books.booksArray);
@@ -17,11 +18,11 @@ function GridTabs() {
   const dispatch = useDispatch();
 
   const completedBooks = books.filter(book => {
-    return book.percentageRead() === 100;
+    return useGetPercentageRead(book.pages, book.pagesRead) === 100;
   });
 
   const currentlyReadingBooks = books.filter(book => {
-    return book.percentageRead() !== 100;
+    return useGetPercentageRead(book.pages, book.pagesRead) !== 100;
   });
 
   const sortBy = useSelector(state => state.books.sortBy);

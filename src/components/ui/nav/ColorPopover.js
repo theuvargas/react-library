@@ -47,9 +47,8 @@ function ColorPopover() {
           <SimpleGrid columns={5} textAlign="center">
             {colors.map(color => {
               return (
-                <GridItem>
+                <GridItem key={color}>
                   <Box
-                    key={color}
                     as="button"
                     w="max-content"
                     p="1"

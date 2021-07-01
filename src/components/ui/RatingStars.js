@@ -51,11 +51,15 @@ function RatingStars(props) {
   }
 
   return (
-    <Flex mt="2">
+    <Flex>
       {stars}
-      <Text fontSize="14" ml="1">
-        {props.starsFilled === 0 ? 'Unrated' : props.starsFilled + '/5'}
-      </Text>
+      {props.renderString ? (
+        <Text fontSize="14" ml="1">
+          {props.starsFilled === 0 ? 'Unrated' : props.starsFilled + '/5'}
+        </Text>
+      ) : (
+        true
+      )}
     </Flex>
   );
 }

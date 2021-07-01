@@ -33,7 +33,7 @@ function BookCardFooter(props) {
           </Tooltip>
         </Fragment>
       ) : (
-        <RatingStars starsFilled={rating} starSize="5" />
+        <RatingStars starsFilled={rating} starSize="5" renderString />
       )}
     </Box>
   );

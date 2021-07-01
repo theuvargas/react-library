@@ -1,9 +1,8 @@
 import React from 'react';
 import { Box } from '@chakra-ui/react';
 
-import BookCover from '../BookCover';
+import BookCardCover from './BookCardCover';
 
-import { useState } from 'react';
 import BookCardMenu from './BookCardMenu';
 
 import { useSelector } from 'react-redux';
@@ -24,7 +23,7 @@ function BookCardHeader(props) {
           bookId={props.bookId}
         />
       </Box>
-      <BookCover bookId={props.bookId} imageSrc={imageSrc} />
+      <BookCardCover bookId={props.bookId} imageSrc={imageSrc} />
     </Box>
   );
 }

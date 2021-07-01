@@ -9,11 +9,12 @@ import SetPagesItem from './menu/SetPagesItem';
 import RatingItem from './menu/RatingItem';
 import DeleteBookItem from './menu/DeleteBookItem';
 import MarkAsCompletedItem from './menu/MarkAsCompletedItem';
+import { useGetPercentageRead } from '../../util/hooks';
 
 function BookCardMenu(props) {
   const percentageRead = useSelector(state => {
     const book = state.books.booksArray.find(book => book.id === props.bookId);
-    return book.percentageRead();
+    return useGetPercentageRead(book.pages, book.pagesRead);
   });
 
   return (

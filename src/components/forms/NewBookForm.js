@@ -62,13 +62,8 @@ function NewBookForm(props) {
       pages: data.pages,
       pagesRead: 0,
       rating: 0,
-      percentageRead: function computePercentageRead() {
-        const percentage = (this.pagesRead / this.pages) * 100;
-        return Math.trunc(percentage);
-      },
     };
 
-    //props.addBook(newBook);
     dispatch(addBook(newBook));
 
     props.toggleIsOpen();
