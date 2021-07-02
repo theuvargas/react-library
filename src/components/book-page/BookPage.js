@@ -58,9 +58,10 @@ function BookPage() {
         direction="column"
       >
         <IconButton
+          variant="ghost"
           ml="auto"
           mr="4"
-          mt="4"
+          mt="2"
           w="8"
           colorScheme={mainColor}
           size="md"
@@ -70,7 +71,7 @@ function BookPage() {
         <BookModal header="Edit book" isOpen={isOpen} toggleIsOpen={onToggle}>
           <EditBookForm isOpen={isOpen} toggleIsOpen={onToggle} book={book} />
         </BookModal>
-        <Flex mt="2" alignItems="center" justify="center">
+        <Flex alignItems="center" justify="center">
           <Image
             src={book.imageSrc}
             w="60"
