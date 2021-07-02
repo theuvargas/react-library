@@ -5,13 +5,19 @@ import { Link as RouterLink } from 'react-router-dom';
 import { FaBookOpen, FaBook } from 'react-icons/fa';
 
 import { useSelector } from 'react-redux';
-import { useGetBook, useGetPercentageRead } from '../../util/hooks';
+import {
+  useGetBook,
+  useGetGenreArrayById,
+  useGetPercentageRead,
+} from '../../util/hooks';
 
 function BookCardInfo(props) {
   const { title, author, genres, pages, pagesRead } = useGetBook(props.bookId);
   const percentageRead = useGetPercentageRead(pages, pagesRead);
 
   const mainColor = useSelector(state => state.color);
+
+  const genreArray = useGetGenreArrayById(props.bookId);
 
   return (
     <Box mx="2" mt="2">
@@ -26,7 +32,7 @@ function BookCardInfo(props) {
         by {author}
       </Text>
       <HStack mt="1">
-        {genres.map((genre, i) => {
+        {genreArray.map((genre, i) => {
           if (i > 3) return true;
           return (
             <Tag size="sm" colorScheme={mainColor} key={i}>

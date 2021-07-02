@@ -10,30 +10,12 @@ import {
   Box,
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
-
-const genreArray = [
-  'Drama',
-  'Comedy',
-  'Epic',
-  'Romance',
-  'Young Adult',
-  'Children',
-  'Nonfiction',
-  'Sci-fi',
-  'Biografy',
-  'Adventure',
-  'Horror',
-  'Mystery',
-  'Thriller',
-  'Self Help',
-  'History',
-  'Psychology',
-  'Dystopia',
-].sort((genre1, genre2) => {
-  return genre1 < genre2 ? -1 : 1;
-});
+import { useSelector } from 'react-redux';
+import { useGetGenreArrayById } from '../../util/hooks';
 
 function BookForm(props) {
+  const genreState = useSelector(state => state.genres.genreArray);
+
   const {
     register,
     handleSubmit,
@@ -148,13 +130,13 @@ function BookForm(props) {
       <FormControl>
         <FormLabel htmlFor="genres">Genres</FormLabel>
         <Box id="genres">
-          {genreArray.map(genre => {
-            const containsGenre = props.book?.genres.includes(genre);
+          {genreState.map((genre, index) => {
+            const containsGenre = props.bookGenres?.includes(genre);
             return (
               <Checkbox
                 defaultIsChecked={containsGenre}
                 mr="3"
-                value={genre}
+                value={index}
                 key={genre}
                 {...register('genreArray.' + genre)}
               >

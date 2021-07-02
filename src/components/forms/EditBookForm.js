@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { editBook } from '../../features/books/booksSlice';
+import { useGetGenreArrayById } from '../../util/hooks';
 import BookForm from './BookForm';
 
 function EditBookForm(props) {
@@ -33,7 +34,16 @@ function EditBookForm(props) {
     props.toggleIsOpen();
   }
 
-  return <BookForm book={props.book} onSubmit={onSubmit} editMode />;
+  const bookGenres = useGetGenreArrayById(props.book.id);
+
+  return (
+    <BookForm
+      book={props.book}
+      onSubmit={onSubmit}
+      bookGenres={bookGenres}
+      editMode
+    />
+  );
 }
 
 export default EditBookForm;

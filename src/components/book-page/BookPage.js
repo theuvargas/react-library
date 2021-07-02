@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router';
 import { Flex, Box } from '@chakra-ui/layout';
-import { useGetBook } from '../../util/hooks';
+import { useGetBook, useGetGenreArrayById } from '../../util/hooks';
 import { useSelector } from 'react-redux';
 import {
   Image,
@@ -45,6 +45,8 @@ function BookPage() {
   }
 
   const { isOpen, onToggle } = useDisclosure();
+
+  const genreArray = useGetGenreArrayById(book.id);
 
   return (
     <Box bg={mainColor + '.50'}>
@@ -96,7 +98,7 @@ function BookPage() {
               <TableItem
                 icon={FaTheaterMasks}
                 label="genres"
-                data={stringifyGenres(book.genres)}
+                data={stringifyGenres(genreArray)}
                 iconColor={mainColor + '.600'}
               />
 

@@ -11,4 +11,16 @@ function useGetPercentageRead(pagesTotal, pagesRead) {
   return Math.trunc(percentage);
 }
 
-export { useGetBook, useGetPercentageRead };
+function useGetGenreArrayById(id) {
+  const { genres } = useGetBook(id);
+  const genreState = useSelector(state => state.genres.genreArray);
+
+  const genreArray = [];
+  genres.forEach(genre => {
+    genreArray.push(genreState[genre]);
+  });
+
+  return genreArray;
+}
+
+export { useGetBook, useGetPercentageRead, useGetGenreArrayById };
