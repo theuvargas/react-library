@@ -86,6 +86,14 @@ export const booksSlice = createSlice({
     addBook: (state, action) => {
       state.booksArray.push(action.payload);
     },
+    editBook: (state, action) => {
+      //state.booksArray.find(book => book.id === action.payload.id) = action.payload;
+      state.booksArray.forEach((book, i, arr) => {
+        if (book.id === action.payload.id) {
+          arr[i] = action.payload;
+        }
+      });
+    },
     completeBook: (state, action) => {
       const requiredBook = state.booksArray.find(
         book => book.id === action.payload
@@ -163,6 +171,7 @@ export const booksSlice = createSlice({
 
 export const {
   addBook,
+  editBook,
   completeBook,
   addPagesRead,
   setPagesRead,

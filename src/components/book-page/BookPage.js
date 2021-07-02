@@ -3,7 +3,16 @@ import { useParams } from 'react-router';
 import { Flex, Box } from '@chakra-ui/layout';
 import { useGetBook } from '../../util/hooks';
 import { useSelector } from 'react-redux';
-import { Image, Text, Icon, Table, Tbody, Heading } from '@chakra-ui/react';
+import {
+  Image,
+  Text,
+  Icon,
+  Table,
+  Tbody,
+  Heading,
+  IconButton,
+  useDisclosure,
+} from '@chakra-ui/react';
 import {
   FaTheaterMasks,
   FaUser,
@@ -11,10 +20,13 @@ import {
   FaBookReader,
   FaStar,
   FaBook,
+  FaEdit,
 } from 'react-icons/fa';
 import { useGetPercentageRead } from '../../util/hooks';
 import TableItem from './TableItem';
 import RatingStars from '../ui/RatingStars';
+import EditBookForm from '../forms/EditBookForm';
+import BookModal from '../modals/BookModal';
 
 function BookPage() {
   const { bookId } = useParams();
@@ -32,6 +44,8 @@ function BookPage() {
     return str.substr(0, str.length - 2);
   }
 
+  const { isOpen, onToggle } = useDisclosure();
+
   return (
     <Box bg={mainColor + '.50'}>
       <Flex
@@ -43,7 +57,20 @@ function BookPage() {
         bg="white"
         direction="column"
       >
-        <Flex mt="4" alignItems="center" justify="center">
+        <IconButton
+          ml="auto"
+          mr="4"
+          mt="4"
+          w="8"
+          colorScheme={mainColor}
+          size="md"
+          icon={<Icon as={FaEdit} />}
+          onClick={onToggle}
+        />
+        <BookModal header="Edit book" isOpen={isOpen} toggleIsOpen={onToggle}>
+          <EditBookForm isOpen={isOpen} toggleIsOpen={onToggle} book={book} />
+        </BookModal>
+        <Flex mt="2" alignItems="center" justify="center">
           <Image
             src={book.imageSrc}
             w="60"

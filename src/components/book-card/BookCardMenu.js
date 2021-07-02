@@ -12,10 +12,11 @@ import MarkAsCompletedItem from './menu/MarkAsCompletedItem';
 import { useGetPercentageRead } from '../../util/hooks';
 
 function BookCardMenu(props) {
-  const percentageRead = useSelector(state => {
-    const book = state.books.booksArray.find(book => book.id === props.bookId);
-    return useGetPercentageRead(book.pages, book.pagesRead);
+  const { pages, pagesRead } = useSelector(state => {
+    return state.books.booksArray.find(book => book.id === props.bookId);
   });
+
+  const percentageRead = useGetPercentageRead(pages, pagesRead);
 
   return (
     <Menu>

@@ -1,9 +1,11 @@
 import React from 'react';
 import { Flex, Button, Select, Text } from '@chakra-ui/react';
 import { useState } from 'react';
-import NewBookModal from '../modals/NewBookModal';
+import BookModal from '../modals/BookModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeSort } from '../../features/books/booksSlice';
+import BookForm from '../forms/BookForm';
+import NewBookForm from '../forms/NewBookForm';
 
 function BookGridActions() {
   const dispatch = useDispatch();
@@ -40,7 +42,13 @@ function BookGridActions() {
         <Button onClick={toggleModal} ml="2" size="sm" colorScheme={mainColor}>
           New book
         </Button>
-        <NewBookModal toggleIsOpen={toggleModal} isOpen={modalIsOpen} />
+        <BookModal
+          header="Add new book"
+          toggleIsOpen={toggleModal}
+          isOpen={modalIsOpen}
+        >
+          <NewBookForm toggleIsOpen={toggleModal} />
+        </BookModal>
       </Flex>
     </Flex>
   );

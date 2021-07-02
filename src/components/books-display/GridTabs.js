@@ -18,11 +18,11 @@ function GridTabs() {
   const dispatch = useDispatch();
 
   const completedBooks = books.filter(book => {
-    return useGetPercentageRead(book.pages, book.pagesRead) === 100;
+    return book.pagesRead === book.pages;
   });
 
   const currentlyReadingBooks = books.filter(book => {
-    return useGetPercentageRead(book.pages, book.pagesRead) !== 100;
+    return book.pagesRead !== book.pages;
   });
 
   const sortBy = useSelector(state => state.books.sortBy);
