@@ -10,6 +10,7 @@ function Navbar() {
   return (
     <Flex
       h="12"
+      w="100%"
       bg={mainColor + '.600'}
       color="white"
       justify="space-around"

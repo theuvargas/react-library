@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { useGetPercentageRead } from '../../util/hooks';
 
 export const booksSlice = createSlice({
   name: 'books',
@@ -132,7 +133,10 @@ export const booksSlice = createSlice({
       const sortBy = state.sortBy;
       if (sortBy === 'title') {
         state.booksArray.sort((book1, book2) => {
-          return book1.title.toLowerCase() < book2.title.toLowerCase() ? -1 : 1;
+          return book1.title.toLocaleLowerCase() <
+            book2.title.toLocaleLowerCase()
+            ? -1
+            : 1;
         });
       } else if (sortBy === 'rating') {
         state.booksArray.sort((book1, book2) => {
@@ -140,11 +144,17 @@ export const booksSlice = createSlice({
         });
       } else if (sortBy === 'most progress') {
         state.booksArray.sort((book1, book2) => {
-          return book1.percentageRead() > book2.percentageRead() ? -1 : 1;
+          return useGetPercentageRead(book1.pages, book1.pagesRead) >
+            useGetPercentageRead(book2.pages, book2.pagesRead)
+            ? -1
+            : 1;
         });
       } else if (sortBy === 'least progress') {
         state.booksArray.sort((book1, book2) => {
-          return book1.percentageRead() < book2.percentageRead() ? -1 : 1;
+          return useGetPercentageRead(book1.pages, book1.pagesRead) <
+            useGetPercentageRead(book2.pages, book2.pagesRead)
+            ? -1
+            : 1;
         });
       }
     },

@@ -36,27 +36,16 @@ function GridTabs() {
     <Tabs isLazy colorScheme={mainColor}>
       <TabList mb="2">
         <Tab outlineOffset="-3" _focus={{ outlineColor: 'blue.200' }}>
-          All books
-        </Tab>
-        <Tab outlineOffset="-3" _focus={{ outlineColor: 'blue.200' }}>
           Currently reading
         </Tab>
         <Tab outlineOffset="-3" _focus={{ outlineColor: 'blue.200' }}>
           Finished
         </Tab>
+        <Tab outlineOffset="-3" _focus={{ outlineColor: 'blue.200' }}>
+          All
+        </Tab>
       </TabList>
       <TabPanels h="80vh" overflowY="scroll">
-        <TabPanel>
-          <BookGrid books={books} footerType="progress" />
-          {books.length === 0 ? (
-            <Text textAlign="center">
-              You have no books added! Start adding them by clicking "New book"
-              above.
-            </Text>
-          ) : (
-            true
-          )}
-        </TabPanel>
         <TabPanel>
           <BookGrid books={currentlyReadingBooks} footerType="progress" />
           {currentlyReadingBooks.length === 0 ? (
@@ -72,6 +61,17 @@ function GridTabs() {
           <BookGrid books={completedBooks} footerType="rating" />
           {completedBooks.length === 0 ? (
             <Text textAlign="center">No finished books yet.</Text>
+          ) : (
+            true
+          )}
+        </TabPanel>
+        <TabPanel>
+          <BookGrid books={books} footerType="progress" />
+          {books.length === 0 ? (
+            <Text textAlign="center">
+              You have no books added! Start adding them by clicking "New book"
+              above.
+            </Text>
           ) : (
             true
           )}
