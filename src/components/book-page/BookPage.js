@@ -63,7 +63,7 @@ function BookPage() {
           variant="ghost"
           ml="auto"
           mr="4"
-          mt="2"
+          mt="1"
           w="8"
           colorScheme={mainColor}
           size="md"

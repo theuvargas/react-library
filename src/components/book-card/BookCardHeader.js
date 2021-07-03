@@ -23,7 +23,9 @@ function BookCardHeader(props) {
           bookId={props.bookId}
         />
       </Box>
-      <BookCardCover bookId={props.bookId} imageSrc={imageSrc} />
+      <Box textAlign="center">
+        <BookCardCover bookId={props.bookId} imageSrc={imageSrc} />
+      </Box>
     </Box>
   );
 }
