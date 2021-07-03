@@ -20,7 +20,6 @@ function NewBookForm(props) {
       id: data.title,
       title: data.title,
       author: data.author,
-      description: data.description,
       imageSrc: data.image,
       genres: data.genreArray,
       pages: data.pages,

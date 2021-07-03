@@ -21,7 +21,6 @@ function EditBookForm(props) {
       id: props.book.id,
       title: data.title,
       author: data.author,
-      description: data.description,
       imageSrc: data.image,
       genres: data.genreArray,
       pages: data.pages,

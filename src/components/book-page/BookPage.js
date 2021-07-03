@@ -115,18 +115,6 @@ function BookPage() {
             </Tbody>
           </Table>
         </Flex>
-        {book.description ? (
-          <Box>
-            <Text mt="4" fontSize="20" fontWeight="bold">
-              Description
-            </Text>
-            <Text mt="2" fontSize="18" lineHeight="tall">
-              {book.description}
-            </Text>
-          </Box>
-        ) : (
-          true
-        )}
       </Flex>
     </Box>
   );

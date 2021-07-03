@@ -120,14 +120,6 @@ function BookForm(props) {
         true
       )}
       <FormControl>
-        <FormLabel htmlFor="description">Description</FormLabel>
-        <Textarea
-          id="description"
-          defaultValue={props.book?.description}
-          {...register('description')}
-        />
-      </FormControl>
-      <FormControl>
         <FormLabel htmlFor="genres">Genres</FormLabel>
         <Box id="genres">
           {genreState.map((genre, index) => {
