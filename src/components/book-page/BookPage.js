@@ -51,7 +51,7 @@ function BookPage() {
   return (
     <Box bg={mainColor + '.50'}>
       <Flex
-        w="fit-content"
+        w="container.md"
         h="100vh"
         px="6"
         mx="auto"
@@ -74,13 +74,7 @@ function BookPage() {
           <EditBookForm isOpen={isOpen} toggleIsOpen={onToggle} book={book} />
         </BookModal>
         <Flex alignItems="center" justify="center">
-          <Image
-            src={book.imageSrc}
-            w="60"
-            h="80"
-            objectFit="fill"
-            shadow="base"
-          />
+          <Image src={book.imageSrc} w="60" h="80" shadow="base" />
           <Table w="2/5" fontSize="18" mt="2">
             <Tbody>
               <TableItem
@@ -126,7 +120,7 @@ function BookPage() {
             <Text mt="4" fontSize="20" fontWeight="bold">
               Description
             </Text>
-            <Text mt="2" fontSize="18" lineHeight="tall" w="container.md">
+            <Text mt="2" fontSize="18" lineHeight="tall">
               {book.description}
             </Text>
           </Box>
