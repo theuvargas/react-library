@@ -74,8 +74,9 @@ function BookForm(props) {
               {...register('pagesRead', {
                 valueAsNumber: true,
                 validate: {
-                  positive: v =>
-                    parseInt(v, 10) > 0 || 'Number of pages should be positive',
+                  nonNegative: v =>
+                    parseInt(v, 10) >= 0 ||
+                    "Number of pages read shouldn't be negative",
                   notBiggerThanPages: v =>
                     v <= getValues().pages ||
                     "Number of pages read shouldn't be bigger than number of pages",

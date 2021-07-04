@@ -21,6 +21,11 @@ export const genresSlice = createSlice({
       'History',
       'Psychology',
       'Dystopia',
+      'Art',
+      'Science',
+      'Suspense',
+      'Crime',
+      'Classic',
     ].sort((genre1, genre2) => {
       return genre1 < genre2 ? -1 : 1;
     }),
