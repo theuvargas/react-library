@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Box, Text, Progress, Tooltip } from '@chakra-ui/react';
+import { Box, Flex, Text, Progress, Tooltip } from '@chakra-ui/react';
 import RatingStars from '../ui/RatingStars';
 import { useSelector } from 'react-redux';
 import { useGetBook, useGetPercentageRead } from '../../util/hooks';
@@ -33,7 +33,12 @@ function BookCardFooter(props) {
           </Tooltip>
         </Fragment>
       ) : (
-        <RatingStars starsFilled={rating} starSize="5" renderString />
+        <Flex mt="1">
+          <RatingStars starsFilled={rating} starSize="5" />
+          <Text fontSize="14" ml="1">
+            {rating === 0 ? 'Unrated' : rating + '/5'}
+          </Text>
+        </Flex>
       )}
     </Box>
   );

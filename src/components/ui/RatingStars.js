@@ -1,5 +1,5 @@
 import { FaStarHalf } from 'react-icons/fa';
-import { Icon, Text, Flex } from '@chakra-ui/react';
+import { Icon } from '@chakra-ui/react';
 import React from 'react';
 
 function RatingStars(props) {
@@ -50,18 +50,7 @@ function RatingStars(props) {
     }
   }
 
-  return (
-    <Flex>
-      {stars}
-      {props.renderString ? (
-        <Text fontSize="14" ml="1">
-          {props.starsFilled === 0 ? 'Unrated' : props.starsFilled + '/5'}
-        </Text>
-      ) : (
-        true
-      )}
-    </Flex>
-  );
+  return stars;
 }
 
 export default RatingStars;

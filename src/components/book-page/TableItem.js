@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tr, Td, Flex, Icon, Text } from '@chakra-ui/react';
+import { Tr, Td, Flex, Icon, Text, Box } from '@chakra-ui/react';
 
 function TableItem(props) {
   return (
@@ -13,7 +13,7 @@ function TableItem(props) {
         </Flex>
       </Td>
       <Td>
-        <Text fontWeight="medium">{props.data}</Text>
+        <Box fontWeight="medium">{props.data}</Box>
       </Td>
     </Tr>
   );
