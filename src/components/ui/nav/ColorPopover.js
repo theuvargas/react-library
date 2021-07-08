@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaEllipsisV } from 'react-icons/fa';
+import { FaCheck } from 'react-icons/fa';
 import {
   Icon,
   Popover,
@@ -33,6 +33,8 @@ const colors = [
 
 function ColorPopover() {
   const dispatch = useDispatch();
+
+  const mainColor = useSelector(state => state.color);
 
   return (
     <Popover>
@@ -68,7 +70,13 @@ function ColorPopover() {
                       borderWidth="thin"
                       borderColor={color + '.600'}
                       _active={{ bg: color + '.600' }}
-                    ></Box>
+                    >
+                      {color === mainColor ? (
+                        <Icon color={color + '.800'} as={FaCheck} />
+                      ) : (
+                        true
+                      )}
+                    </Box>
                   </Box>
                 </GridItem>
               );
