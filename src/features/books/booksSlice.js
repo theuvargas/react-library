@@ -81,13 +81,15 @@ export const booksSlice = createSlice({
       },
     ],
     sortBy: 'title',
+    sortByOrder: 'ascending',
+    sortTrigger: true,
+    sortCount: 0,
   },
   reducers: {
     addBook: (state, action) => {
       state.booksArray.push(action.payload);
     },
     editBook: (state, action) => {
-      //state.booksArray.find(book => book.id === action.payload.id) = action.payload;
       state.booksArray.forEach((book, i, arr) => {
         if (book.id === action.payload.id) {
           arr[i] = action.payload;
@@ -143,28 +145,33 @@ export const booksSlice = createSlice({
         state.booksArray.sort((book1, book2) => {
           return book1.title.toLocaleLowerCase() <
             book2.title.toLocaleLowerCase()
-            ? -1
-            : 1;
+            ? 1
+            : -1;
         });
+        if (state.sortByOrder === 'ascending') state.booksArray.reverse();
       } else if (sortBy === 'rating') {
         state.booksArray.sort((book1, book2) => {
           return book1.rating > book2.rating ? -1 : 1;
         });
-      } else if (sortBy === 'most progress') {
+        if (state.sortByOrder === 'ascending') state.booksArray.reverse();
+
+        if (state.sortCount % 2 === 0) state.sortTrigger = !state.sortTrigger;
+        state.sortCount++;
+      } else if (sortBy === 'progress') {
         state.booksArray.sort((book1, book2) => {
           return useGetPercentageRead(book1.pages, book1.pagesRead) >
             useGetPercentageRead(book2.pages, book2.pagesRead)
             ? -1
             : 1;
         });
-      } else if (sortBy === 'least progress') {
-        state.booksArray.sort((book1, book2) => {
-          return useGetPercentageRead(book1.pages, book1.pagesRead) <
-            useGetPercentageRead(book2.pages, book2.pagesRead)
-            ? -1
-            : 1;
-        });
+        if (state.sortByOrder === 'ascending') state.booksArray.reverse();
+
+        if (state.sortCount % 2 === 0) state.sortTrigger = !state.sortTrigger;
+        state.sortCount++;
       }
+    },
+    changeSortOrder: (state, action) => {
+      state.sortByOrder = action.payload;
     },
   },
 });
@@ -178,6 +185,7 @@ export const {
   setRating,
   removeBook,
   changeSort,
+  changeSortOrder,
   sortBooks,
 } = booksSlice.actions;
 

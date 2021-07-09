@@ -26,9 +26,10 @@ function GridTabs() {
   });
 
   const sortBy = useSelector(state => state.books.sortBy);
+  const sortByOrder = useSelector(state => state.books.sortByOrder);
   useEffect(() => {
     dispatch(sortBooks(sortBy));
-  }, [books, sortBy]);
+  }, [sortBy, sortByOrder]);
 
   const mainColor = useSelector(state => state.color);
 

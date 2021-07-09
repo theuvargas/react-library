@@ -1,11 +1,24 @@
 import React from 'react';
-import { Flex, Button, Select, Text } from '@chakra-ui/react';
+import {
+  Flex,
+  Button,
+  Select,
+  Text,
+  Menu,
+  MenuButton,
+  Icon,
+  MenuList,
+  MenuOptionGroup,
+  MenuItemOption,
+  MenuDivider,
+} from '@chakra-ui/react';
 import { useState } from 'react';
 import BookModal from '../modals/BookModal';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeSort } from '../../features/books/booksSlice';
+import { changeSort, changeSortOrder } from '../../features/books/booksSlice';
 import BookForm from '../forms/BookForm';
 import NewBookForm from '../forms/NewBookForm';
+import { FaFilter, FaSort } from 'react-icons/fa';
 
 function BookGridActions() {
   const dispatch = useDispatch();
@@ -20,36 +33,54 @@ function BookGridActions() {
 
   return (
     <Flex mt="4">
-      <Flex ml="auto" mr="4">
-        <Flex alignItems="center">
-          <Text whiteSpace="nowrap" fontSize="13">
-            Sort by:
-          </Text>
-          <Select
-            variant="flushed"
-            ml="2"
-            size="sm"
-            _focus={{ outlineColor: 'blue.200' }}
-            borderColor={mainColor + '.600'}
-            onChange={e => dispatch(changeSort(e.target.value))}
-          >
-            <option value="title">Title</option>
-            <option value="rating">Rating</option>
-            <option value="least progress">Least progress</option>
-            <option value="most progress">Most progress</option>
-          </Select>
-        </Flex>
-        <Button onClick={toggleModal} ml="2" size="sm" colorScheme={mainColor}>
-          New book
-        </Button>
-        <BookModal
-          header="Add new book"
-          toggleIsOpen={toggleModal}
-          isOpen={modalIsOpen}
+      <Menu closeOnSelect={false}>
+        <MenuButton
+          as={Button}
+          colorScheme={mainColor}
+          size="sm"
+          rightIcon={<Icon as={FaSort} />}
         >
-          <NewBookForm toggleIsOpen={toggleModal} />
-        </BookModal>
-      </Flex>
+          Sort
+        </MenuButton>
+        <MenuList>
+          <MenuOptionGroup
+            title="Sort by"
+            defaultValue="title"
+            type="radio"
+            onChange={e => dispatch(changeSort(e))}
+          >
+            <MenuItemOption value="title">Title</MenuItemOption>
+            <MenuItemOption value="rating">Rating</MenuItemOption>
+            <MenuItemOption value="progress">Progress</MenuItemOption>
+          </MenuOptionGroup>
+          <MenuDivider />
+          <MenuOptionGroup
+            title="Order"
+            defaultValue="ascending"
+            type="radio"
+            onChange={e => dispatch(changeSortOrder(e))}
+          >
+            <MenuItemOption value="ascending">Ascending</MenuItemOption>
+            <MenuItemOption value="descending">Descending</MenuItemOption>
+          </MenuOptionGroup>
+        </MenuList>
+      </Menu>
+      <Button
+        onClick={toggleModal}
+        placeSelf="flex-end"
+        size="sm"
+        colorScheme={mainColor}
+        ml="auto"
+      >
+        New book
+      </Button>
+      <BookModal
+        header="Add new book"
+        toggleIsOpen={toggleModal}
+        isOpen={modalIsOpen}
+      >
+        <NewBookForm toggleIsOpen={toggleModal} />
+      </BookModal>
     </Flex>
   );
 }
