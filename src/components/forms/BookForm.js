@@ -3,7 +3,6 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Textarea,
   Text,
   Button,
   Checkbox,
@@ -11,7 +10,6 @@ import {
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
-import { useGetGenreArrayById } from '../../util/hooks';
 
 function BookForm(props) {
   const genreState = useSelector(state => state.genres.genreArray);

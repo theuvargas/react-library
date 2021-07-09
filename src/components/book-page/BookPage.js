@@ -5,24 +5,20 @@ import { useGetBook, useGetGenreArrayById } from '../../util/hooks';
 import { useSelector } from 'react-redux';
 import {
   Image,
-  Text,
   Icon,
   Table,
   Tbody,
-  Heading,
   IconButton,
   useDisclosure,
 } from '@chakra-ui/react';
 import {
   FaTheaterMasks,
   FaUser,
-  FaBookOpen,
   FaBookReader,
   FaStar,
   FaBook,
   FaEdit,
 } from 'react-icons/fa';
-import { useGetPercentageRead } from '../../util/hooks';
 import TableItem from './TableItem';
 import RatingStars from '../ui/RatingStars';
 import EditBookForm from '../forms/EditBookForm';

@@ -13,7 +13,6 @@ import {
   NumberInputField,
   Box,
 } from '@chakra-ui/react';
-import { useSelector } from 'react-redux';
 import { useGetBook } from '../../util/hooks';
 
 function PagesModal(props) {

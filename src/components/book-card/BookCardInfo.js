@@ -1,6 +1,5 @@
 import React from 'react';
-import { Box, HStack, Icon, Text, Tag, TagLabel, Link } from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Box, HStack, Icon, Text, Tag, TagLabel } from '@chakra-ui/react';
 
 import { FaBookOpen, FaBook } from 'react-icons/fa';
 
@@ -12,7 +11,7 @@ import {
 } from '../../util/hooks';
 
 function BookCardInfo(props) {
-  const { title, author, genres, pages, pagesRead } = useGetBook(props.bookId);
+  const { title, author, pages, pagesRead } = useGetBook(props.bookId);
   const percentageRead = useGetPercentageRead(pages, pagesRead);
 
   const mainColor = useSelector(state => state.color);

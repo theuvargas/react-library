@@ -10,7 +10,6 @@ import {
 import BookGrid from '../../components/books-display/BookGrid';
 import { useSelector, useDispatch } from 'react-redux';
 import { sortBooks } from '../../features/books/booksSlice';
-import { useGetPercentageRead } from '../../util/hooks';
 
 function GridTabs() {
   const allBooks = useSelector(state => state.books.booksArray);
@@ -60,7 +59,7 @@ function GridTabs() {
   const sortByOrder = useSelector(state => state.books.sortByOrder);
   useEffect(() => {
     dispatch(sortBooks(sortBy));
-  }, [sortBy, sortByOrder]);
+  }, [sortBy, sortByOrder, dispatch]);
 
   const mainColor = useSelector(state => state.color);
 

@@ -2,8 +2,6 @@ import React from 'react';
 import {
   Flex,
   Button,
-  Select,
-  Text,
   Menu,
   MenuButton,
   Icon,
@@ -20,7 +18,6 @@ import {
   changeSort,
   changeSortOrder,
 } from '../../features/books/booksSlice';
-import BookForm from '../forms/BookForm';
 import NewBookForm from '../forms/NewBookForm';
 import { FaFilter, FaPlus, FaSort } from 'react-icons/fa';
 

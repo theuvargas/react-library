@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Box,
   Input,
-  NumberInputStepper,
   FormHelperText,
   Button,
   Text,
