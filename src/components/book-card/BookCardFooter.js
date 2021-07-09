@@ -29,6 +29,7 @@ function BookCardFooter(props) {
               colorScheme={mainColor}
               hasStripe
               display="block"
+              aria-label="progress bar"
             />
           </Tooltip>
         </Fragment>

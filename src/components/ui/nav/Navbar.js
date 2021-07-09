@@ -8,26 +8,28 @@ function Navbar() {
   const mainColor = useSelector(state => state.color);
 
   return (
-    <Flex
-      h="12"
-      w="100%"
-      bg={mainColor + '.600'}
-      color="white"
-      justify="space-around"
-      alignItems="center"
-    >
-      <Box fontSize="22">
-        <RouterLink to="/">React Library</RouterLink>
-      </Box>
-
-      <Flex alignItems="center">
-        <Box>Language</Box>
-        <Box ml="6">
-          <ColorPopover />
+    <nav>
+      <Flex
+        h="12"
+        w="100%"
+        bg={mainColor + '.600'}
+        color="white"
+        justify="space-around"
+        alignItems="center"
+      >
+        <Box fontSize="22">
+          <RouterLink to="/">React Library</RouterLink>
         </Box>
-        <Box ml="6">About</Box>
+
+        <Flex alignItems="center">
+          <Box>Language</Box>
+          <Box ml="6">
+            <ColorPopover />
+          </Box>
+          <Box ml="6">About</Box>
+        </Flex>
       </Flex>
-    </Flex>
+    </nav>
   );
 }
 

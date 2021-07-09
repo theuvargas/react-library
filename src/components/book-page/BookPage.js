@@ -65,12 +65,19 @@ function BookPage() {
           size="md"
           icon={<Icon as={FaEdit} />}
           onClick={onToggle}
+          aria-label="edit book"
         />
         <BookModal header="Edit book" isOpen={isOpen} toggleIsOpen={onToggle}>
           <EditBookForm isOpen={isOpen} toggleIsOpen={onToggle} book={book} />
         </BookModal>
         <Flex alignItems="center" justify="center">
-          <Image src={book.imageSrc} w="60" h="80" shadow="base" />
+          <Image
+            src={book.imageSrc}
+            w="60"
+            h="80"
+            shadow="base"
+            alt="book cover"
+          />
           <Table w="2/5" fontSize="18" mt="2">
             <Tbody>
               <TableItem

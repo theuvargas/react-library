@@ -28,6 +28,7 @@ function BookCardMenu(props) {
         _focus={{ outlineColor: 'blue.200' }}
         outlineOffset="-4px"
         w="2"
+        aria-label="book actions"
         icon={
           <Icon
             _hover={{ cursor: 'pointer' }}

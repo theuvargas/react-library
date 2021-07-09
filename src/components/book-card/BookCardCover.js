@@ -27,6 +27,7 @@ function BookCover(props) {
         transitionDuration="0.3s"
         _hover={{ transform: 'scale(' + props.scale + ')' }}
         transform={'scale(' + scale + ')'}
+        alt="book cover"
       />
     </Link>
   );
