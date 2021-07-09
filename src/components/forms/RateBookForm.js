@@ -23,7 +23,6 @@ function RateBookForm(props) {
   } = useForm();
 
   function onSubmit(data) {
-    console.log(props.bookId);
     dispatch(setRating({ id: props.bookId, rating: data.rating }));
 
     props.toggleIsOpen();

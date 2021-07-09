@@ -38,7 +38,7 @@ function GridTabs() {
         })
       );
     } else setBooks(allBooks);
-  }, [filter, allBooks]);
+  }, [filter, allBooks, genreArray]);
 
   useEffect(() => {
     setCompletedBooks(
@@ -60,7 +60,6 @@ function GridTabs() {
   const sortByOrder = useSelector(state => state.books.sortByOrder);
   useEffect(() => {
     dispatch(sortBooks(sortBy));
-    console.log('hello!');
   }, [sortBy, sortByOrder]);
 
   const mainColor = useSelector(state => state.color);

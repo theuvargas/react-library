@@ -82,13 +82,12 @@ export const booksSlice = createSlice({
     ],
     sortBy: 'title',
     sortByOrder: 'ascending',
-    sortTrigger: true,
-    sortCount: 0,
     filter: [],
   },
   reducers: {
     addBook: (state, action) => {
       state.booksArray.push(action.payload);
+      sort(state);
     },
     editBook: (state, action) => {
       state.booksArray.forEach((book, i, arr) => {
@@ -102,6 +101,8 @@ export const booksSlice = createSlice({
         book => book.id === action.payload
       );
       requiredBook.pagesRead = requiredBook.pages;
+
+      if (state.sortBy === 'progress') sort(state);
     },
     addPagesRead: (state, action) => {
       const pagesToAdd = parseInt(action.payload.pagesToAdd, 10);
@@ -113,6 +114,8 @@ export const booksSlice = createSlice({
       if (pagesToAdd + requiredBook.pagesRead > requiredBook.pages)
         requiredBook.pagesRead = requiredBook.pages;
       else requiredBook.pagesRead += pagesToAdd;
+
+      if (state.sortBy === 'progress') sort(state);
     },
     setPagesRead: (state, action) => {
       const pagesRead = parseInt(action.payload.pagesRead, 10);
@@ -125,12 +128,16 @@ export const booksSlice = createSlice({
       if (pagesRead > requiredBook.pages)
         requiredBook.pagesRead = requiredBook.pages;
       else requiredBook.pagesRead = pagesRead;
+
+      if (state.sortBy === 'progress') sort(state);
     },
     setRating: (state, action) => {
       const requiredBook = state.booksArray.find(
         book => book.id === action.payload.id
       );
       requiredBook.rating = action.payload.rating;
+
+      if (state.sortBy === 'rating') sort(state);
     },
     removeBook: (state, action) => {
       state.booksArray = state.booksArray.filter(
@@ -141,35 +148,7 @@ export const booksSlice = createSlice({
       state.sortBy = action.payload;
     },
     sortBooks: state => {
-      const sortBy = state.sortBy;
-      if (sortBy === 'title') {
-        state.booksArray.sort((book1, book2) => {
-          return book1.title.toLocaleLowerCase() <
-            book2.title.toLocaleLowerCase()
-            ? 1
-            : -1;
-        });
-        if (state.sortByOrder === 'ascending') state.booksArray.reverse();
-      } else if (sortBy === 'rating') {
-        state.booksArray.sort((book1, book2) => {
-          return book1.rating > book2.rating ? -1 : 1;
-        });
-        if (state.sortByOrder === 'ascending') state.booksArray.reverse();
-
-        if (state.sortCount % 2 === 0) state.sortTrigger = !state.sortTrigger;
-        state.sortCount++;
-      } else if (sortBy === 'progress') {
-        state.booksArray.sort((book1, book2) => {
-          return useGetPercentageRead(book1.pages, book1.pagesRead) >
-            useGetPercentageRead(book2.pages, book2.pagesRead)
-            ? -1
-            : 1;
-        });
-        if (state.sortByOrder === 'ascending') state.booksArray.reverse();
-
-        if (state.sortCount % 2 === 0) state.sortTrigger = !state.sortTrigger;
-        state.sortCount++;
-      }
+      sort(state);
     },
     changeSortOrder: (state, action) => {
       state.sortByOrder = action.payload;
@@ -179,6 +158,31 @@ export const booksSlice = createSlice({
     },
   },
 });
+
+function sort(state) {
+  const sortBy = state.sortBy;
+  if (sortBy === 'title') {
+    state.booksArray.sort((book1, book2) => {
+      return book1.title.toLocaleLowerCase() < book2.title.toLocaleLowerCase()
+        ? 1
+        : -1;
+    });
+    if (state.sortByOrder === 'ascending') state.booksArray.reverse();
+  } else if (sortBy === 'rating') {
+    state.booksArray.sort((book1, book2) => {
+      return book1.rating > book2.rating ? -1 : 1;
+    });
+    if (state.sortByOrder === 'ascending') state.booksArray.reverse();
+  } else if (sortBy === 'progress') {
+    state.booksArray.sort((book1, book2) => {
+      return useGetPercentageRead(book1.pages, book1.pagesRead) >
+        useGetPercentageRead(book2.pages, book2.pagesRead)
+        ? -1
+        : 1;
+    });
+    if (state.sortByOrder === 'ascending') state.booksArray.reverse();
+  }
+}
 
 export const {
   addBook,
