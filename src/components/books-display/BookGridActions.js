@@ -15,10 +15,14 @@ import {
 import { useState } from 'react';
 import BookModal from '../modals/BookModal';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeSort, changeSortOrder } from '../../features/books/booksSlice';
+import {
+  changeFilter,
+  changeSort,
+  changeSortOrder,
+} from '../../features/books/booksSlice';
 import BookForm from '../forms/BookForm';
 import NewBookForm from '../forms/NewBookForm';
-import { FaFilter, FaSort } from 'react-icons/fa';
+import { FaFilter, FaPlus, FaSort } from 'react-icons/fa';
 
 function BookGridActions() {
   const dispatch = useDispatch();
@@ -30,6 +34,7 @@ function BookGridActions() {
   }
 
   const mainColor = useSelector(state => state.color);
+  const genreArray = useSelector(state => state.genres.genreArray);
 
   return (
     <Flex mt="4">
@@ -39,6 +44,7 @@ function BookGridActions() {
           colorScheme={mainColor}
           size="sm"
           rightIcon={<Icon as={FaSort} />}
+          variant="outline"
         >
           Sort
         </MenuButton>
@@ -65,14 +71,43 @@ function BookGridActions() {
           </MenuOptionGroup>
         </MenuList>
       </Menu>
+      <Menu closeOnSelect={false}>
+        <MenuButton
+          ml="2"
+          as={Button}
+          colorScheme={mainColor}
+          size="sm"
+          rightIcon={<Icon as={FaFilter} />}
+          variant="outline"
+        >
+          Filter
+        </MenuButton>
+        <MenuList>
+          <MenuOptionGroup
+            onChange={e => dispatch(changeFilter(e))}
+            title="Genre"
+            type="checkbox"
+          >
+            {genreArray.map(genre => {
+              return (
+                <MenuItemOption key={genre} value={genre}>
+                  {genre}
+                </MenuItemOption>
+              );
+            })}
+          </MenuOptionGroup>
+        </MenuList>
+      </Menu>
       <Button
         onClick={toggleModal}
         placeSelf="flex-end"
         size="sm"
         colorScheme={mainColor}
         ml="auto"
+        rightIcon={<Icon as={FaPlus} />}
+        variant="outline"
       >
-        New book
+        New
       </Button>
       <BookModal
         header="Add new book"

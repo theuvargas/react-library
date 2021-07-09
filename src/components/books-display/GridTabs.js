@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Tabs,
   TabList,
@@ -13,28 +13,60 @@ import { sortBooks } from '../../features/books/booksSlice';
 import { useGetPercentageRead } from '../../util/hooks';
 
 function GridTabs() {
-  const books = useSelector(state => state.books.booksArray);
+  const allBooks = useSelector(state => state.books.booksArray);
+
+  const [books, setBooks] = useState(allBooks);
+
+  const [completedBooks, setCompletedBooks] = useState(
+    books.filter(book => {
+      return book.pagesRead === book.pages;
+    })
+  );
+  const [currentlyReadingBooks, setCurrentlyReadingBooks] = useState(
+    books.filter(book => {
+      return book.pagesRead !== book.pages;
+    })
+  );
+
+  const genreArray = useSelector(state => state.genres.genreArray);
+  const filter = useSelector(state => state.books.filter);
+  useEffect(() => {
+    if (filter.length !== 0) {
+      setBooks(
+        allBooks.filter(book => {
+          return book.genres.some(genre => filter.includes(genreArray[genre]));
+        })
+      );
+    } else setBooks(allBooks);
+  }, [filter, allBooks]);
+
+  useEffect(() => {
+    setCompletedBooks(
+      books.filter(book => {
+        return book.pagesRead === book.pages;
+      })
+    );
+
+    setCurrentlyReadingBooks(
+      books.filter(book => {
+        return book.pagesRead !== book.pages;
+      })
+    );
+  }, [books]);
 
   const dispatch = useDispatch();
-
-  const completedBooks = books.filter(book => {
-    return book.pagesRead === book.pages;
-  });
-
-  const currentlyReadingBooks = books.filter(book => {
-    return book.pagesRead !== book.pages;
-  });
 
   const sortBy = useSelector(state => state.books.sortBy);
   const sortByOrder = useSelector(state => state.books.sortByOrder);
   useEffect(() => {
     dispatch(sortBooks(sortBy));
+    console.log('hello!');
   }, [sortBy, sortByOrder]);
 
   const mainColor = useSelector(state => state.color);
 
   return (
-    <Tabs isLazy colorScheme={mainColor}>
+    <Tabs isLazy colorScheme={mainColor} mt="2">
       <TabList mb="2">
         <Tab outlineOffset="-3" _focus={{ outlineColor: 'blue.200' }}>
           Currently reading

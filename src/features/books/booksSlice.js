@@ -84,6 +84,7 @@ export const booksSlice = createSlice({
     sortByOrder: 'ascending',
     sortTrigger: true,
     sortCount: 0,
+    filter: [],
   },
   reducers: {
     addBook: (state, action) => {
@@ -173,6 +174,9 @@ export const booksSlice = createSlice({
     changeSortOrder: (state, action) => {
       state.sortByOrder = action.payload;
     },
+    changeFilter: (state, action) => {
+      state.filter = action.payload;
+    },
   },
 });
 
@@ -187,6 +191,7 @@ export const {
   changeSort,
   changeSortOrder,
   sortBooks,
+  changeFilter,
 } = booksSlice.actions;
 
 export default booksSlice.reducer;
