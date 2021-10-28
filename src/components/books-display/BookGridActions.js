@@ -32,6 +32,9 @@ function BookGridActions() {
 
   const mainColor = useSelector(state => state.color);
   const genreArray = useSelector(state => state.genres.genreArray);
+  const sortBy = useSelector(state => state.books.sortBy);
+  const sortByOrder = useSelector(state => state.books.sortByOrder);
+  const filters = useSelector(state => state.books.filter);
 
   return (
     <Flex mt="4">
@@ -48,7 +51,7 @@ function BookGridActions() {
         <MenuList>
           <MenuOptionGroup
             title="Sort by"
-            defaultValue="title"
+            defaultValue={sortBy}
             type="radio"
             onChange={e => dispatch(changeSort(e))}
           >
@@ -59,7 +62,7 @@ function BookGridActions() {
           <MenuDivider />
           <MenuOptionGroup
             title="Order"
-            defaultValue="ascending"
+            defaultValue={sortByOrder}
             type="radio"
             onChange={e => dispatch(changeSortOrder(e))}
           >
@@ -84,10 +87,11 @@ function BookGridActions() {
             onChange={e => dispatch(changeFilter(e))}
             title="Genre"
             type="checkbox"
+            value={filters}
           >
             {genreArray.map(genre => {
               return (
-                <MenuItemOption key={genre} value={genre}>
+                <MenuItemOption type="checkbox" key={genre} value={genre}>
                   {genre}
                 </MenuItemOption>
               );
