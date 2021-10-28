@@ -8,7 +8,7 @@ function BooksDisplay() {
   const mainColor = useSelector(state => state.color);
 
   return (
-    <Box w="xl" mx="auto">
+    <Box w="xl" mx="auto" bg="white">
       <BookGridActions color={mainColor} />
       <GridTabs />
     </Box>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, Box } from '@chakra-ui/react';
 import theme from './theme';
 import { Switch, BrowserRouter as Router, Route } from 'react-router-dom';
 import BooksDisplay from './components/books-display/BooksDisplay';
@@ -18,7 +18,7 @@ function App() {
           <Route path="/" exact>
             <BooksDisplay />
           </Route>
-          <Route path="*">404 mate kkk</Route>
+          <Route path="*">error 404</Route>
         </Switch>
       </Router>
     </ChakraProvider>

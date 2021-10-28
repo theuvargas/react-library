@@ -35,7 +35,7 @@ function BookGridActions() {
 
   return (
     <Flex mt="4">
-      <Menu closeOnSelect={false}>
+      <Menu isLazy closeOnSelect={false}>
         <MenuButton
           as={Button}
           colorScheme={mainColor}
@@ -68,7 +68,7 @@ function BookGridActions() {
           </MenuOptionGroup>
         </MenuList>
       </Menu>
-      <Menu closeOnSelect={false}>
+      <Menu isLazy closeOnSelect={false}>
         <MenuButton
           ml="2"
           as={Button}
