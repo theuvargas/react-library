@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {
   Tabs,
   TabList,
@@ -11,52 +11,35 @@ import BookGrid from '../../components/books-display/BookGrid';
 import { useSelector, useDispatch } from 'react-redux';
 import { sortBooks } from '../../features/books/booksSlice';
 
-function GridTabs() {
-  const allBooks = useSelector(state => state.books.booksArray);
+function selectCompletedBooks(state) {
+  return selectBooks(state).filter(book => book.pagesRead === book.pages);
+}
 
-  const [books, setBooks] = useState(allBooks);
+function selectCurrentlyReadingBooks(state) {
+  return selectBooks(state).filter(book => book.pagesRead !== book.pages);
+}
 
-  const [completedBooks, setCompletedBooks] = useState(
-    books.filter(book => {
-      return book.pagesRead === book.pages;
-    })
-  );
-  const [currentlyReadingBooks, setCurrentlyReadingBooks] = useState(
-    books.filter(book => {
-      return book.pagesRead !== book.pages;
-    })
-  );
-
-  const genreArray = useSelector(state => state.genres.genreArray);
-  const filter = useSelector(state => state.books.filter);
-  useEffect(() => {
-    if (filter.length !== 0) {
-      setBooks(
-        allBooks.filter(book => {
-          return book.genres.some(genre => filter.includes(genreArray[genre]));
-        })
+function selectBooks(state) {
+  return state.books.filter.length === 0
+    ? state.books.booksArray
+    : state.books.booksArray.filter(book =>
+        book.genres.some(genre =>
+          state.books.filter.includes(state.genres.genreArray[genre])
+        )
       );
-    } else setBooks(allBooks);
-  }, [filter, allBooks, genreArray]);
+}
 
-  useEffect(() => {
-    setCompletedBooks(
-      books.filter(book => {
-        return book.pagesRead === book.pages;
-      })
-    );
+function GridTabs() {
+  const allBooks = useSelector(selectBooks);
 
-    setCurrentlyReadingBooks(
-      books.filter(book => {
-        return book.pagesRead !== book.pages;
-      })
-    );
-  }, [books]);
+  const completedBooks = useSelector(selectCompletedBooks);
+  const currentlyReadingBooks = useSelector(selectCurrentlyReadingBooks);
 
   const dispatch = useDispatch();
 
   const sortBy = useSelector(state => state.books.sortBy);
   const sortByOrder = useSelector(state => state.books.sortByOrder);
+
   useEffect(() => {
     dispatch(sortBooks(sortBy));
   }, [sortBy, sortByOrder, dispatch]);
@@ -97,8 +80,8 @@ function GridTabs() {
           )}
         </TabPanel>
         <TabPanel>
-          <BookGrid books={books} footerType="progress" />
-          {books.length === 0 ? (
+          <BookGrid books={allBooks} footerType="progress" />
+          {allBooks.length === 0 ? (
             <Text textAlign="center">
               You have no books added! Start adding them by clicking "New book"
               above.
