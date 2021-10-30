@@ -12,10 +12,10 @@ function App() {
       <Router>
         <Navbar />
         <Switch>
-          <Route path="/books/:bookId">
+          <Route path="/react-library/books/:bookId">
             <BookPage />
           </Route>
-          <Route path="/" exact>
+          <Route path="/react-library/" exact>
             <BooksDisplay />
           </Route>
           <Route path="*">error 404</Route>

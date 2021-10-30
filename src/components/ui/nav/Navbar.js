@@ -18,7 +18,7 @@ function Navbar() {
         alignItems="center"
       >
         <Box fontSize="22">
-          <RouterLink to="/">React Library</RouterLink>
+          <RouterLink to="/react-library/">React Library</RouterLink>
         </Box>
 
         <Flex alignItems="center">

@@ -15,7 +15,7 @@ function BookCover(props) {
         setScale(1);
       }}
       display="inline-block"
-      to={'/books/' + props.bookId}
+      to={'books/' + props.bookId}
     >
       <Image
         src={props.imageSrc}
