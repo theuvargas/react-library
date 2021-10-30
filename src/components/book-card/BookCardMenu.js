@@ -19,7 +19,7 @@ function BookCardMenu(props) {
   const percentageRead = useGetPercentageRead(pages, pagesRead);
 
   return (
-    <Menu isLazy>
+    <Menu>
       <MenuButton
         as={IconButton}
         variant="none"
